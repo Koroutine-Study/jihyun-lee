@@ -163,31 +163,31 @@ fun getElapsedTime(startTime: Long): String = "지난 시간: ${System.currentTi
 
 ### ExecutorService 내부 구조와 동작
 
-![내부 구조](image.png)
+![내부 구조](images/image.png)
 
 - ExecutorService 객체는 크게 두 부분
     - 할당 받은 작업을 적재하는 작업 대기열
     - 작업을 수행하는 스레드의 집합인 스레드풀
 - ExecutorService 객체는 사용자로부터 요청받은 작업을 작업 대기열에 적재한 후 쉬고 있는 스레드에 작업 할당
 
-![작업1](image-1.png)
+![작업1](images/image-1.png)
 
 - 작업 대기열에 들어간 작업1은 스레드로 할당되길 기다림
 - 쉬고 있는 스레드가 있으면 할당됨
 
-![작업1](image-2.png)
+![작업1](images/image-2.png)
 
-![작업2](image-3.png)
+![작업2](images/image-3.png)
 
 - 사용자가 작업3을 추가로 요청 → 작업 대기열에 적재
 
-![작업3](image-4.png)
+![작업3](images/image-4.png)
 
 - 스레드풀의 스레드 중 하나가 작업을 완료 → 작업3을 쉬고 있는 스레드에 분배
 
 ![작업1 완료](image-5.png)
 
-![작업3 할당](image-6.png)
+![작업3 할당](images/image-6.png)
 
 - 중요한 점은 개발자가 ExecutorService 객체 내부의 동작을 전혀 신경 쓰지 않아도 됨
 
@@ -285,7 +285,7 @@ fun getElapsedTime(startTime: Long): String = "지난 시간: ${System.currentTi
     - 코루틴이 스레드를 사용하던 중에 필요가 없어지면 해당 스레드를 다른 코루틴이 쓸 수 있게 양보 → 블로킹 X
 - ex. 스레드 2개, 코루틴 3개
     
-    ![블로킹 방지](image-7.png)
+    ![블로킹 방지](images/image-7.png)
     
 - 코루틴은 작업 단위로서, 자신이 스레드를 사용하지 않을 때 스레드 사용 권한 반납 → 스레드 사용 최적화, 스레드가 블로킹되는 상황 방지
 - 코루틴은 스레드에 비해 생성과 전환 비용이 적음
